@@ -68,10 +68,12 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Inventaire:build:production"
+              "browserTarget": "Inventaire:build:production",
+              "host" : "128.0.0.223"
             },
             "development": {
-              "browserTarget": "Inventaire:build:development"
+              "browserTarget": "Inventaire:build:development",
+              "host" : "128.0.0.223"
             }
           },
           "defaultConfiguration": "development"
