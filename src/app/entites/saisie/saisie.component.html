@@ -1,0 +1,15 @@
+<form [formGroup]="ligneInventaireForm" (ngSubmit)="onSubmit(ligneInventaireForm.value)">
+  <div>
+    <label class="titre">Code Article + Lot</label>
+    <input class="form-control" type="text" [formControlName]="'codeArticleLot'" />
+  </div>
+  <div>
+    <label class="titre">Emplacement</label>
+    <input class="form-control" type="text" [formControlName]="'emplacement'" />
+  </div>
+  <div>
+    <label class="titre">Quantite</label>
+    <input class="form-control" type="number" [formControlName]="'quantite'" />
+  </div>
+  <button class="btn btn-success" type="submit">Submit</button>
+</form>
