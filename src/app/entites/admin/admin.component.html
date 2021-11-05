@@ -1,1 +1,11 @@
-<p>admin works!</p>
+<form [formGroup]="adminForm" (ngSubmit)="onSubmit(adminForm.value)">
+  <div>
+    <label class="titre">Equipe</label>
+    <input class="form-control" type="number" [formControlName]="'numEquipe'" />
+    <label class="titre">Passage</label>
+    <input class="form-control" type="number" [formControlName]="'numPassage'" />
+    <label class="titre">Zone</label>
+    <input class="form-control" type="text" [formControlName]="'zone'" />
+  </div>
+  <button class="btn btn-success" type="submit">Enregistrer</button>
+</form>
