@@ -40,10 +40,9 @@ public class LigneInventaireRestServices {
         li.setEmplacement(lia.getEmplacement());
         li.setQuantite(lia.getQuantite());
         li.setIdInventaire("2021IC");
-        li.setNumEquipe(2);
-        li.setNumPassage(2);
-        li.setZone("Entrepôt");
-        System.out.println("Rest");
+        li.setNumEquipe(lia.getNumEquipe());
+        li.setNumPassage(lia.getNumPassage());
+        li.setZone(lia.getZone());
         return ligneInventaireRepository.save(li);
     }
     @PutMapping(value="/listeLigne/delete/{id}")

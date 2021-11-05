@@ -18,4 +18,8 @@ public class LigneInventaireAjout  implements Serializable {
     private String codeArticleLot;
     private String emplacement;
     private Double quantite;
+    private String zone ;
+    private Integer numEquipe ;
+    private Integer numPassage ;
+
 }
