@@ -66,12 +66,12 @@ export class SaisieComponent implements OnInit {
   }
 
   onSubmit(data: any): void {
-    this.paramEdit();
     this.ligneInventaireService.ajoutLigneInventaire(data).subscribe();
-    this.paramSubmit();
     this.ligneInventaireForm.get('codeArticleLot')?.reset();
     this.ligneInventaireForm.get('emplacement')?.reset();
     this.ligneInventaireForm.get('quantite')?.reset();
+    this.designation = "";
+    this.unite = "";
   }
 
   checkMdp(event: any){
@@ -79,7 +79,7 @@ export class SaisieComponent implements OnInit {
       this.etat = false;
     }
   }
-  paramSubmit(): void{
+  paramSubmit(event: any): void{
     this.etat = true;
   }
 
@@ -94,13 +94,7 @@ export class SaisieComponent implements OnInit {
   getInfosArticle(codeArtLot: string){
     this.articleService.getInfosArticle(codeArtLot)
       .subscribe((data: ArticleComponent) => {this.designation = data.designation, this.unite = data.unite});
-
   }
 
-  getFocus(input: HTMLInputElement){
-    if (this.designation != ''){
-      input.focus();
-    }
-  }
 
 }

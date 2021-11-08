@@ -1,8 +1,10 @@
-<form [formGroup]="ligneInventaireForm" (ngSubmit)="onSubmit(ligneInventaireForm.value)">
-  <label name="designationLabel">{{designation}}</label>
+<form [formGroup]="ligneInventaireForm" (ngSubmit)="onSubmit(ligneInventaireForm.value); emplacement.focus()">
+  <div>
+    <label name="designationLabel">{{designation}}</label>
+  </div>
   <div>
     <label class="titre">Emplacement</label>
-    <input class="form-control" type="text" [formControlName]="'emplacement'" />
+    <input class="form-control" type="text" #emplacement [formControlName]="'emplacement'" />
   </div>
   <div>
     <label class="titre">Code Article + Lot</label>
@@ -22,7 +24,7 @@
   <form (ngSubmit)="checkMdp($event)">
     <div>
       <label class="titre">Mot de passe Admin</label>
-      <input id="mdp" class="mdp_admin" type="password"/>
+      <input id="mdp" class="mdp_admin" #mdp type="password"/>
       <button class="btn btn-success btn_admin" type="submit">Modifier</button>
     </div>
   </form>
@@ -39,6 +41,6 @@
     <input class="form-control" type="text" [readOnly]="readonly()" [formControlName]="'zone'" />
   </div>
   <div>
-    <button class="btn btn-success btn_saisie" (click)="paramSubmit()" type="button">Enregistrer</button>
+    <button class="btn btn-success btn_saisie" (click)="paramSubmit($event); mdp.value=''" type="button">Enregistrer</button>
   </div>
 </form>
