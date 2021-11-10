@@ -5,9 +5,9 @@ import {AdminComponent} from "./entites/admin/admin.component";
 
 
 const routes: Routes = [
-  { path: 'saisie', component: SaisieComponent },
+  { path: 'saisie', redirectTo:'', pathMatch: 'full' },
   { path: 'admin', component: AdminComponent },
-  { path: '', redirectTo:'saisie', pathMatch: 'full' }
+  { path: '', component: SaisieComponent }
 ];
 
 @NgModule({

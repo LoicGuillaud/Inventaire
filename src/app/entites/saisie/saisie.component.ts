@@ -44,6 +44,7 @@ export class SaisieComponent implements OnInit {
   designation: string;
   unite: string;
   mdp: string;
+  erreur: string;
   lic: LigneInventaireComponent;
 
   constructor(private fb: FormBuilder, private ligneInventaireService: LigneInventaireService, private articleService: ArticleService) {
@@ -58,6 +59,7 @@ export class SaisieComponent implements OnInit {
     this.designation = "";
     this.unite = "";
     this.mdp = "";
+    this.erreur = "";
     this.lic = new LigneInventaireComponent();
   }
 
@@ -66,12 +68,18 @@ export class SaisieComponent implements OnInit {
   }
 
   onSubmit(data: any): void {
-    this.ligneInventaireService.ajoutLigneInventaire(data).subscribe();
-    this.ligneInventaireForm.get('codeArticleLot')?.reset();
-    this.ligneInventaireForm.get('emplacement')?.reset();
-    this.ligneInventaireForm.get('quantite')?.reset();
-    this.designation = "";
-    this.unite = "";
+    if (this.designation != ""){
+      this.ligneInventaireService.ajoutLigneInventaire(data).subscribe();
+      this.ligneInventaireForm.get('codeArticleLot')?.reset();
+      this.ligneInventaireForm.get('emplacement')?.reset();
+      this.ligneInventaireForm.get('quantite')?.reset();
+      this.designation = "";
+      this.unite = "";
+      this.erreur = "";
+    }else{
+      this.erreur = "Le code article n'est pas valide";
+    }
+
   }
 
   checkMdp(event: any){
@@ -92,8 +100,16 @@ export class SaisieComponent implements OnInit {
   }
 
   getInfosArticle(codeArtLot: string){
-    this.articleService.getInfosArticle(codeArtLot)
-      .subscribe((data: ArticleComponent) => {this.designation = data.designation, this.unite = data.unite});
+    if (codeArtLot != ""){
+      this.articleService.getInfosArticle(codeArtLot)
+        .subscribe((data: ArticleComponent) => {this.designation = data.designation, this.unite = data.unite});
+      this.erreur = "";
+    }else{
+      this.designation = "";
+      this.unite = "";
+    }
+
+
   }
 
 

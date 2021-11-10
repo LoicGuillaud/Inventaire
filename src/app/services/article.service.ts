@@ -14,9 +14,9 @@ export class ArticleService {
   getInfosArticle(codeArtLot: String){
     const head = { headers: new HttpHeaders({'Access-Control-Allow-Origin': '*'})}
     if (!environment.production){
-      return this.http.get<ArticleComponent>("http://localhost:8080/listeArticle/get/" + codeArtLot, head)
+      return this.http.get<ArticleComponent>("http://localhost:3839/listeArticle/get/" + codeArtLot, head)
     }else{
-      return this.http.get<ArticleComponent>("http://128.0.0.220:8080/listeArticle/get/" + codeArtLot, head)
+      return this.http.get<ArticleComponent>("http://128.0.0.220:3839/listeArticle/get/" + codeArtLot, head)
     }
 
   }

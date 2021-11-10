@@ -15,10 +15,10 @@ export class LigneInventaireService {
   ajoutLigneInventaire(ligneInventaireAjout: LigneInventaireComponent): Observable<LigneInventaireComponent>{
     const head = { headers: new HttpHeaders({'Access-Control-Allow-Origin': '*'})}
     if (!environment.production){
-      console.log(this.http.post<LigneInventaireComponent>("http://localhost:8080/listeligne/save/",ligneInventaireAjout, head))
-      return this.http.post<LigneInventaireComponent>("http://localhost:8080/listeligne/save/",ligneInventaireAjout, head)
+      console.log(this.http.post<LigneInventaireComponent>("http://localhost:3839/listeligne/save/",ligneInventaireAjout, head))
+      return this.http.post<LigneInventaireComponent>("http://localhost:3839/listeligne/save/",ligneInventaireAjout, head)
     }else{
-      return this.http.post<LigneInventaireComponent>("http://128.0.0.220:8080/listeligne/save/",ligneInventaireAjout, head)
+      return this.http.post<LigneInventaireComponent>("http://128.0.0.220:3839/listeligne/save/",ligneInventaireAjout, head)
     }
 
   }
