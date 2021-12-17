@@ -12,6 +12,7 @@ import { InMemoryDataService } from './services/in-memory-data.service';
 import { LigneInventaireComponent } from './entites/ligne-inventaire/ligne-inventaire.component';
 import { ParametresComponent } from './entites/parametres/parametres.component';
 import { ArticleComponent } from './entites/article/article.component';
+import { EmplacementComponent } from './entites/emplacement/emplacement.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ArticleComponent } from './entites/article/article.component';
     AdminComponent,
     LigneInventaireComponent,
     ParametresComponent,
-    ArticleComponent
+    ArticleComponent,
+    EmplacementComponent
   ],
   imports: [
     BrowserModule,

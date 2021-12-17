@@ -4,7 +4,7 @@
   </div>
   <div>
     <label class="titre">Emplacement</label>
-    <input class="form-control" type="text" #emplacement [formControlName]="'emplacement'" />
+    <input class="form-control" type="text" (change)="getEmplacement(emplacement.value)" #emplacement [formControlName]="'emplacement'" />
   </div>
   <div>
     <label class="titre">Code Article + Lot</label>

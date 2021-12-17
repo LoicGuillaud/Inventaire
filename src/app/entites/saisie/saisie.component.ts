@@ -9,6 +9,8 @@ import {JsonArray} from "@angular/compiler-cli/ngcc/src/packages/entry_point";
 import {ArticleService} from "../../services/article.service";
 import {ArticleComponent} from "../article/article.component";
 import {createViewChild} from "@angular/compiler/src/core";
+import {EmplacementService} from "../../services/emplacement.service";
+import {EmplacementComponent} from "../emplacement/emplacement.component";
 
 
 @Component({
@@ -47,7 +49,7 @@ export class SaisieComponent implements OnInit {
   erreur: string;
   lic: LigneInventaireComponent;
 
-  constructor(private fb: FormBuilder, private ligneInventaireService: LigneInventaireService, private articleService: ArticleService) {
+  constructor(private fb: FormBuilder, private ligneInventaireService: LigneInventaireService, private articleService: ArticleService, private emplacementService: EmplacementService) {
     this.codeArticle = "";
     this.lot = "";
     this.emplacement = "";
@@ -68,18 +70,19 @@ export class SaisieComponent implements OnInit {
   }
 
   onSubmit(data: any): void {
-    if (this.designation != ""){
-      this.ligneInventaireService.ajoutLigneInventaire(data).subscribe();
-      this.ligneInventaireForm.get('codeArticleLot')?.reset();
-      this.ligneInventaireForm.get('emplacement')?.reset();
-      this.ligneInventaireForm.get('quantite')?.reset();
-      this.designation = "";
-      this.unite = "";
-      this.erreur = "";
-    }else{
-      this.erreur = "Le code article n'est pas valide";
+    if (this.designation != "") {
+      if (this.ligneInventaireForm.get('numEquipe')?.value != "" && this.ligneInventaireForm.get('numPassage')?.value != "" && this.ligneInventaireForm.get('zone')?.value != "") {
+        this.ligneInventaireService.ajoutLigneInventaire(data).subscribe();
+        this.ligneInventaireForm.get('codeArticleLot')?.reset();
+        this.ligneInventaireForm.get('emplacement')?.reset();
+        this.ligneInventaireForm.get('quantite')?.reset();
+        this.designation = "";
+        this.unite = "";
+        this.erreur = "";
+      } else {
+        this.erreur = "Informations de saisies manquantes, allez voir votre responsable";
+      }
     }
-
   }
 
   checkMdp(event: any){
@@ -102,14 +105,33 @@ export class SaisieComponent implements OnInit {
   getInfosArticle(codeArtLot: string){
     if (codeArtLot != ""){
       this.articleService.getInfosArticle(codeArtLot)
-        .subscribe((data: ArticleComponent) => {this.designation = data.designation, this.unite = data.unite});
+        .subscribe((data: ArticleComponent) => {
+          if (data != null){
+            this.designation = data.designation, this.unite = data.unite
+          }else{
+            this.erreur = "Le code article n'est pas valide";
+          }
+        });
       this.erreur = "";
     }else{
       this.designation = "";
       this.unite = "";
     }
+  }
 
-
+  getEmplacement(emplacement: string){
+    if (emplacement != ""){
+      this.emplacementService.getEmplacement(emplacement).subscribe((data: EmplacementComponent) => {
+        if (data != null){
+          this.emplacement = data.codeEmplacement
+        }else{
+          this.erreur = "L'emplacement n'existe pas";
+        }
+      });
+      this.erreur = "";
+    }else{
+      this.emplacement = "";
+    }
   }
 
 
