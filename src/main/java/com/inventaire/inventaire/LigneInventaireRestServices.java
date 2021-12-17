@@ -23,11 +23,11 @@ public class LigneInventaireRestServices {
         return ligneInventaireRepository.findAll();
     }
     @GetMapping(value="/listeLigne/get/{id}")
-    public Optional<LigneInventaire> listeLigne(@PathVariable(name ="id") Long id){
+    public Optional<LigneInventaire> listeLigne(@PathVariable(name ="id") Integer id){
         return ligneInventaireRepository.findById(id);
     }
     @PutMapping(value="/listeLigne/update/{id}")
-    public LigneInventaire update(@PathVariable(name ="id") Long id,@RequestBody LigneInventaire li){
+    public LigneInventaire update(@PathVariable(name ="id") Integer id,@RequestBody LigneInventaire li){
         li.setIdLigne(id);
         return ligneInventaireRepository.save(li);
     }
@@ -46,7 +46,7 @@ public class LigneInventaireRestServices {
         return ligneInventaireRepository.save(li);
     }
     @PutMapping(value="/listeLigne/delete/{id}")
-    public void delete(@PathVariable(name ="id") Long id){
+    public void delete(@PathVariable(name ="id") Integer id){
         ligneInventaireRepository.deleteById(id);
     }
 }

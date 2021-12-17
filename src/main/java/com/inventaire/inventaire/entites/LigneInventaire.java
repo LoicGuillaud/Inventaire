@@ -14,7 +14,7 @@ import java.io.Serializable;
 @Data @NoArgsConstructor @AllArgsConstructor
 public class LigneInventaire implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idLigne;
+    private Integer idLigne;
     private String idInventaire;
     private String codeArticle;
     private String numeroLot;
